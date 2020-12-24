@@ -25,7 +25,7 @@ const parseGender = (genderString: string): GenderEnum | null => {
     res = GenderEnum.FEMALE;
   } else if (genderString === lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE) {
     res = GenderEnum.MALE;
-  } else if (genderString === lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_BOTH) {
+  } else if (genderString === lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_BOTH || genderString === lang.KEYWORD_GENDER) {
     res = GenderEnum.UNKNOWN;
   } else {
     res = null;
