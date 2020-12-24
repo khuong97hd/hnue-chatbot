@@ -31,37 +31,42 @@ const persistent_menu = [
     composer_input_disabled: false,
     call_to_actions: [
       {
-        title: 'meow',
+        title: '👫 Tìm ngẫu nhiên',
         type: 'postback',
-        payload: lang.KEYWORD_CAT
+        payload: lang.KEYWORD_GENDER
       },
       {
-        title: 'gauw',
-        type: 'postback',
-        payload: lang.KEYWORD_DOG
-      },
-      {
-        title: 'tìm nam',
+        title: '👱 Tìm bạn nam',
         type: 'postback',
         payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_MALE
       },
       {
-        title: 'tìm nữ',
+        title: '🙆 Tìm bạn nữ',
         type: 'postback',
         payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE
       },
       {
-        title: 'kết thúc',
+        title: '🐱 meow - Xem ảnh mèo',
+        type: 'postback',
+        payload: lang.KEYWORD_CAT
+      },
+      {
+        title: '🐕 gauw - Xem ảnh cún',
+        type: 'postback',
+        payload: lang.KEYWORD_DOG
+      },
+      {
+        title: '❌ Kết thúc',
         type: 'postback',
         payload: lang.KEYWORD_END
       },
       {
-        title: 'trợ giúp',
+        title: '👉 Trợ giúp',
         type: 'postback',
         payload: lang.KEYWORD_HELP
       },
       {
-        title: 'gửi phản hồi',
+        title: '💌 Gửi confessions',
         type: 'web_url',
         url: config.REPORT_LINK
       }
@@ -72,17 +77,17 @@ const persistent_menu = [
 const quick_buttons_generic: Array<SendQuickReply> = [
   {
     content_type: 'text',
-    title: 'meow',
+    title: '🐱 meow - Xem ảnh mèo',
     payload: lang.KEYWORD_CAT
   },
   {
     content_type: 'text',
-    title: 'gauw',
+    title: '🐕 gauw - Xem ảnh cún',
     payload: lang.KEYWORD_DOG
   },
   {
     content_type: 'text',
-    title: 'trợ giúp',
+    title: '👉 Trợ giúp',
     payload: lang.KEYWORD_HELP
   }
 ];
@@ -90,12 +95,17 @@ const quick_buttons_generic: Array<SendQuickReply> = [
 const quick_buttons_genders: Array<SendQuickReply> = [
   {
     content_type: 'text',
-    title: 'tìm nam',
+    title: '👫 Tìm ngẫu nhiên',
+    payload: lang.KEYWORD_GENDER
+  },
+  {
+    content_type: 'text',
+    title: '👱 Tìm bạn nam',
     payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_MALE
   },
   {
     content_type: 'text',
-    title: 'tìm nữ',
+    title: '🙆 Tìm bạn nữ',
     payload: lang.KEYWORD_GENDER + lang.KEYWORD_GENDER_FEMALE
   }
 ];
@@ -284,11 +294,11 @@ const sendAttachment = async (
   usePersona: boolean
 ): Promise<void> => {
   let quick_replies: Array<SendQuickReply> = [];
-  if (showGenericButton) {
-    quick_replies = quick_replies.concat(quick_buttons_generic);
-  }
   if (showGenderButton) {
     quick_replies = quick_replies.concat(quick_buttons_genders);
+  }
+  if (showGenericButton) {
+    quick_replies = quick_replies.concat(quick_buttons_generic);
   }
 
   const message: SendMessageObject = {
@@ -342,7 +352,7 @@ const sendTextButtons = async (
   }
 
   if (showReportButton) {
-    buttons.push({ type: 'web_url', title: 'Gửi phản hồi', url: config.REPORT_LINK });
+    buttons.push({ type: 'web_url', title: '💌 Gửi confessions', url: config.REPORT_LINK });
   }
 
   let quick_replies: Array<SendQuickReply> = [];
