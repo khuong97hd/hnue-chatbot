@@ -6,7 +6,7 @@ import { WebhookEvent, WebhookEntry, WebhookMessagingEvent } from '../../interfa
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/webhook', (req, res) => {
   // Parse the query params
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   }
 });
 
-router.post('/', verifyXHub, (req, res) => {
+router.post('/webhook', verifyXHub, (req, res) => {
   res.sendStatus(200);
   const data: WebhookEvent = req.body;
   data.entry.forEach((entry: WebhookEntry) => {
